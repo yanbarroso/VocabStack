@@ -11,16 +11,14 @@
 
 ## 📋 Índice
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Stack Técnico](#stack-técnico)
-- [Arquitetura](#arquitetura)
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Desenvolvimento com TDD](#desenvolvimento-com-tdd)
-- [API Endpoints](#api-endpoints)
-- [Estrutura de Pastas](#estrutura-de-pastas)
-- [Contribuindo](#contribuindo)
-- [Roadmap](#roadmap)
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Stack Técnico](#-stack-técnico)
+- [Arquitetura](#-arquitetura)
+- [Instalação](#-instalação)
+- [Como Usar](#-como-usar)
+- [Desenvolvimento com TDD](#-desenvolvimento-com-tdd)
+- [API Endpoints](#-api-endpoints)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
 
 ---
 
