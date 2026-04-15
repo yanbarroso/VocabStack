@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vocabstack"
+version = "0.1.0"
+description = "Ferramenta para análise de frequência de palavras em textos"
+authors = [{name = "VocabStack"}]
+requires-python = ">=3.9"
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "spacy>=3.7.0",
+    "nltk>=3.8.0",
+    "ebooklib>=0.18.0",
+    "pdfplumber>=0.11.0",
+    "trafilatura>=1.7.0",
+    "beautifulsoup4>=4.12.0",
+    "python-multipart>=0.0.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.25.0",
+    "black>=23.0.0",
+    "pylint>=3.0.0",
+    "mypy>=1.7.0",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+markers = [
+    "api: testes de API endpoints",
+    "service: testes de serviços",
+    "database: testes de banco de dados",
+    "utils: testes de utilitários",
+    "integration: testes de integração",
+    "asyncio: testes assincronos",
+    "slow: testes que demoram",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311"]
+
+[tool.pylint]
+max-line-length = 100
