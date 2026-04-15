@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-python-multipart
-spacy
-nltk
-ebooklib
-beautifulsoup4
-pdfplumber
-trafilatura
