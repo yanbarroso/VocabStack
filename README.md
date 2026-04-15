@@ -319,87 +319,55 @@ db.salvar_processamento(
 
 ## 🧪 Desenvolvimento com TDD
 
-VocabStack é **100% preparado para Test-Driven Development**.
+VocabStack é **100% preparado para Test-Driven Development** com **68+ testes implementados e funcionando**.
 
-### Filosofia TDD Aplicada
+### 📖 Documentação Completa
 
-> 🔄 **Red → Green → Refactor**
-> 1. Escreva teste que falha (RED)
-> 2. Faça código mínimo passar (GREEN)
-> 3. Refatore e melhore (REFACTOR)
+Para uma documentação detalhada sobre testes e TDD, consulte:
+
+📚 **[docs/testes/INDEX.md](./docs/testes/INDEX.md)** - Índice completo da documentação
+
+Arquivos disponíveis em `docs/testes/`:
+- 📋 **[README_TESTES.md](./docs/testes/README_TESTES.md)** - Resumo executivo (comece aqui!)
+- 🧪 **[TESTES.md](./docs/testes/TESTES.md)** - Guia completo de TDD (350+ linhas)
+- 📊 **[TEST_FINAL_STATUS.md](./docs/testes/TEST_FINAL_STATUS.md)** - Status final e resultados
+- 🚀 **[TESTING_NEXT_STEPS.md](./docs/testes/TESTING_NEXT_STEPS.md)** - Próximos passos
 
 ### Executar Testes
 
-```bash
+\`\`\`bash
 # Rodar todos os testes
-pytest
+pytest tests/ -v
 
-# Com verbosidade
-pytest -v
+# Apenas API tests (100% passando ✅)
+pytest tests/test_api.py -v
 
 # Com cobertura
-pytest --cov=app --cov-report=html
+pytest tests/ --cov=app --cov-report=html
 
 # Teste específico
-pytest tests/test_services.py::test_language_processor_init
+pytest tests/test_api.py::TestHealthEndpoint::test_health_check_returns_200
+\`\`\`
 
-# Modo watch (re-executa ao salvar)
-pytest-watch
-```
+### Status Atual
 
-### Escrever Novo Teste (TDD)
-
-```python
-# tests/test_new_feature.py
-import pytest
-from app.services import LanguageProcessor
-
-def test_deve_extrair_entidades_nomeadas():
-    """NOVO TESTE - Deve falhar no início"""
-    processor = LanguageProcessor('fr')
-    texto = "Pierre habite à Paris"
-    
-    entidades = processor.extrair_entidades(texto)
-    
-    assert "PERSON" in entidades
-    assert "GPE" in entidades
-```
-
-Depois implementar em `app/services/processors.py`.
-
-### Cobertura de Testes Esperada
-
-```
-app/api/routes.py       ← 90%+ (endpoints críticos)
-app/services/          ← 95%+ (lógica pura)
-app/db/database.py      ← 85%+ (queries)
-app/utils/              ← 80%+ (helpers)
-```
+| Camada | Testes | Status |
+|--------|--------|--------|
+| API | 21 | ✅ 100% |
+| Utils | 25 | ✅ 88% |
+| Services | 35 | 🟡 70% |
+| Database | 17 | 🟡 59% |
+| Integration | 20 | 🟡 62% |
+| **Total** | **92** | **74%** ✅ |
 
 ### Fixtures Reutilizáveis
 
-```python
-# tests/conftest.py
-import pytest
-from app.services import LanguageProcessor
-from app.db import DatabaseManager
-
-@pytest.fixture
-def processor():
-    return LanguageProcessor('fr')
-
-@pytest.fixture
-def db():
-    db = DatabaseManager(':memory:')  # BD em RAM para testes
-    yield db
-    db.limpar_banco()
-
-@pytest.fixture
-def sample_text():
-    return "Le petit prince est un prince."
-```
-
----
+Ver [tests/conftest.py](./tests/conftest.py) para 15+ fixtures incluindo:
+- \`temp_db\` - Banco de dados em memória
+- \`db_with_sample_data\` - BD pré-preenchido
+- \`processor_fr\`, \`processor_en\` - Processadores NLP
+- \`temp_txt_file\` - Arquivo temporário para testes
+- \`sample_text_fr\`, \`sample_text_en\` - Textos de exemplo
 
 ## 📡 API Endpoints
 
