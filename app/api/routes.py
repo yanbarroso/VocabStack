@@ -7,7 +7,7 @@ import shutil
 import os
 from typing import List, Dict
 
-from app.core import db, processor
+from app.core import db, processor, DEFAULT_LANG_NAME
 from app.models import ProcessamentiResult, WorkMetadata
 from app.utils import ReaderFactory
 
@@ -43,7 +43,7 @@ async def upload_obra(titulo: str = Form(...), arquivo: UploadFile = File(...)):
         db.salvar_processamento(
             titulo=titulo,
             tipo=tipo,
-            idioma="french",
+            idioma=DEFAULT_LANG_NAME,
             total=stats["total_count"],
             freq_dict=stats["word_frequencies"]
         )
